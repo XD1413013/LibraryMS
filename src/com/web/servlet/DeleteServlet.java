@@ -26,13 +26,14 @@ public class DeleteServlet extends HttpServlet {
 
         String book_id = request.getParameter("book_id");
         BookService bs = new BookServiceImpl();
+        String message = null;
 
         if(bs.deleteBook(book_id)) {
-            response.getWriter().write("Delete Successfully! Jumping after 5 seconds!");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+            message = "Delete Successfully!";
         } else {
-            response.getWriter().write("Delete Failed! Jumping after 5 seconds!");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/delete.jsp");
+            message = "Delete Failed!";
         }
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("delete.jsp").forward(request, response);
     }
 }

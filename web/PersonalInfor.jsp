@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-    <title>Book List</title>
+    <title>Reader Information</title>
     <style type="text/css">
         #list {
             margin-top: 20px;
@@ -75,7 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<a href="index.html"><img src="images/title.png"
 						alt="xidian-logo" /></a>
 					<h1>
-						<a href="#">XD Library Management System</a>
+						<a href="#">XD Babel</a>
 					</h1>
 				</div>
 			</div>
@@ -92,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					%>
 					<a href="login.jsp">Sign out</a>
 					<a href="reader_operation.jsp">&nbsp;Operation</a>
-					<a href="search.jsp">&nbsp;Back</a>
+					<a href="reader_operation.jsp">&nbsp;Back</a>
 					<%
 						}
 					%>

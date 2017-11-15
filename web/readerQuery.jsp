@@ -42,6 +42,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             font-size:15px;
         }
 </style>
+<style type="text/css">
+        #top{
+            width: 200px;
+            float: right;
+            margin-top: -70px;
+        }
+
+        #top a {
+            color: #2e6da4;
+            font-size:18px;
+        }
+
+        #top a:hover {
+            color: #909;
+        }
+
+</style>
 </head>
 <!--banner-->
 <body>
@@ -54,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="logo">
                 <a href="index.html"><img src="images/title.png"
-                                          alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+                                          alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
             </div>
         </div>
     </div>
@@ -67,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <%
             } else {
             %>
-            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="query.jsp" title="<%=user_name%>" onclick="show()">Back to Query</a>
+            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="query.jsp" >Back</a>
             <%
                 }
             %>

@@ -28,11 +28,12 @@ public class libPersonalServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		String message = null;
 		String id = (String) request.getSession().getAttribute("librarian_id");
 		if (id == null) {
-			response.getWriter().write("Please Sign in first! 5 seconds to jump");
-			response.setHeader("refresh", "5;url=" + request.getContextPath() + "/login.jsp");
+			message="Please Sign in first!";
+			request.setAttribute("message", message);
+	        request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			PersonalInforService personalInforService = new PersonalInforImpl();
 			Librarian librarian = personalInforService.libPersonalInfor(id);
@@ -40,8 +41,9 @@ public class libPersonalServlet extends HttpServlet {
 				request.getSession().setAttribute("librarian", librarian);
 				request.getRequestDispatcher("/lib_PersonalInfor.jsp").forward(request, response);
 			}else {
-				response.getWriter().write("Query error! 5 seconds to jump ");
-				response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+				message="Query error !";
+				request.setAttribute("message", message);
+		        request.getRequestDispatcher("/index2.jsp").forward(request, response);
 			}
 		}
 	}

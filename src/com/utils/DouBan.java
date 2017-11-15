@@ -60,7 +60,7 @@ public class DouBan {
                     httpUrlConn.disconnect();
                 }
             }
-            return buffer.toString();
+            return (buffer == null) ? "null" : buffer.toString();
         }
 
     public static String doFilter(String json, String type) {

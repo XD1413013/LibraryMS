@@ -34,25 +34,21 @@ public class ReserveServlet extends HttpServlet{
         }
 
         if (number == 0) {
-            response.getWriter().write("There have no enough book.please search again.Jumping after 5 seconds");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/search.jsp");
+            request.getRequestDispatcher("/reader_operation.jsp?reserve=no").forward(request, response);
         }
         else {
             String state = bb.checkReserveNum(reader_id);
             if (state.equals("R_yes")){
                boolean fl =  bb.reserveBook(book_isbn,reader_id);
                if (fl){
-                   response.getWriter().write("Reserve successfully! Jumping after 5 seconds");
-                   response.setHeader("refresh", "5;url=" + request.getContextPath() + "/search.jsp");
+                   request.getRequestDispatcher("/reader_operation.jsp?reserve=yes").forward(request, response);
                }
                else{
-                   response.getWriter().write("Reserve failed! Jumping after 5 seconds");
-                   response.setHeader("refresh", "5;url=" + request.getContextPath() + "/search.jsp");
+                   request.getRequestDispatcher("/reader_operation.jsp?reserve=no2").forward(request, response);
                }
             }
             else {
-                response.getWriter().write("More than number limition! Jumping after 5 seconds");
-                response.setHeader("refresh", "5;url=" + request.getContextPath() + "/search.jsp");
+                request.getRequestDispatcher("/reader_operation.jsp?reserve=no3").forward(request, response);
             }
         }
     }

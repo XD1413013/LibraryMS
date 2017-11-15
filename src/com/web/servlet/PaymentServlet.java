@@ -40,9 +40,11 @@ public class PaymentServlet extends HttpServlet {
 
 		String status = (String)request.getSession().getAttribute("pay_status");
 		String name = (String) request.getSession().getAttribute("librarian_id");
+		String message = null;
 		if (name != null) {
 
 			if (payment == money) {
+				new BorrowInforImpl().addIncome(payment);
 				BorrowService bs = new BorrowServiceImpl();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date now = new Date();
@@ -50,25 +52,29 @@ public class PaymentServlet extends HttpServlet {
 				BookService bd = new BookServiceImpl();
 				if (status.equals("return")){
 					if (bd.returnBook(book_id,now_,money)) {
-						response.getWriter().write("Return successfully! Jumping after 5 seconds");
+						message="successfully ! ";
+						request.setAttribute("message", message);
 					} else {
-						response.getWriter().write("Return failed!");
+						message="failed !";
+						request.setAttribute("message", message);
 					}
 				}
 				else if (status.equals("borrow")){
 					String reader_id = (String)request.getSession().getAttribute("reader_id");
 					new BorrowInforImpl().fresh(reader_id);
-					response.setHeader("refresh", "5;url=" + request.getContextPath() + "/borrow.jsp");
+					message="pay successfully!";
+					request.setAttribute("message", message);
+					request.getRequestDispatcher("/index2.jsp").forward(request, response);
 				}
 			} else {
 				response.getWriter().write("Please enter the correct amount of money! Jumping after 5 seconds");
 				response.setHeader("refresh", "5;url=" + request.getContextPath() + "/payment.jsp");
 			}
-			response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+			request.getRequestDispatcher("/index2.jsp").forward(request, response);
 		}else {
-			response.getWriter().write("Add failed! please log in first");
-			response.setHeader("refresh", "5;url=" + request.getContextPath()
-					+ "/login.jsp");
+			message="Pay failed! please log in first";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 

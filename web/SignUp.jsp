@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Sign up</title>
 <link rel="stylesheet" href="css2/style.css">
 <style type="text/css">
 .clear {
@@ -44,32 +44,32 @@
 		var urn = document.getElementById("urn");
 		var sex = document.getElementById("sex");
 		var pwd = document.getElementById("pwd");
-		var c_psw = document.getElementById("c_pwd");
+		var c_pwd = document.getElementById("c_pwd");
 		if (id.value=="") {
 			alert("Please enter the id");
 			return false;
-		}else if(urn.value==""){
+		}if(urn.value==""){
 			alert("Please enter the username");
 			return false;
-		}else if(sex.value==""){
+		}if(sex.value==""){
 			alert("Please enter the sex");
 			return false;
-		}else if(pwd.value==""){
+		}if(pwd.value==""){
 			alert("Please enter the password");
 			return false;
-		}else if(c_pwd.value==""){
+		}if(c_pwd.value==""){
 			alert("Please enter the confirm");
 			return false;
-		}else if(pwd.value!=c_pwd.value){
+		}if(pwd.value!=c_pwd.value){
 			alert("Two input password does not match!");
 			return false;
-		}else if(psw.value.length<6){
+		}if(pwd.value.length<6){
 			alert("Password's length must be more than 5");
 			return false;
-		}else if(!(/^(141301)[1234]\d{4}$/.test(id.value))){
+		}if(!(/^(141301)[1234]\d{4}$/.test(id.value))){
 			alert("ID fomat error");
 			return false;
-		} else if(!(/^(male)|^(female)$/.test(sex.value))){
+		} if(!(/^(male)|^(female)$/.test(sex.value))){
 			alert("Please input male or female");
 			return false;
 		}
@@ -81,7 +81,7 @@
 	request.getSession().invalidate();
 	%>
 	<h1>
-		<font color="black">Library Management System</font>
+		<font color="black">XD Babel</font>
 	</h1>
 	<div id="page">
 		<div id="top">
@@ -99,7 +99,7 @@
 <div class="index-main">
     <div class="index-main-body" style= "margin-top: -100px;">
         <div class="index-header">
-            <h2 class="subtitle">XD  Library  Management  System</h2>
+            <h2 class="subtitle"></h2>
         </div>
 
         <div class="desk-front sign-flow clearfix sign-flow-simple" >
@@ -111,7 +111,6 @@
 						<div class="name input-wrapper">
                             <input required type="text" id="id" name="reader_id" aria-label="reader_id" placeholder="Sturdent ID"><span id="msg"></span>
                         </div>
-						
                         <div class="name input-wrapper">
                             <input required type="text" id="urn" name="urn" aria-label="reader_name" placeholder="reader_name">
                         </div>

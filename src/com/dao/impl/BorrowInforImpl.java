@@ -106,6 +106,7 @@ public class BorrowInforImpl implements BorrowInfor {
 				borrow_time = sdf.parse(rs.getString(2));
 				payment += now.getTime() / (24 * 60 * 60 * 1000) - borrow_time.getTime() / (24 * 60 * 60 * 1000)-30;
 				payment -= getMoney(book_id);
+				System.out.println(payment);
 			}
 		}catch (Exception e){
 
@@ -132,10 +133,7 @@ public class BorrowInforImpl implements BorrowInfor {
 				borrow_time = sdf.parse(rs.getString(2));
 				payment = now.getTime() / (24 * 60 * 60 * 1000) - borrow_time.getTime() / (24 * 60 * 60 * 1000) - 30;
 				payment -= getMoney(book_id);
-				System.out.println(payment);
-				System.out.println(book_id);
-				System.out.println(sdf.format(borrow_time));
-	
+				
 				conn2 = DBUtils.getConnection();
 				
 				String sql_1 = "UPDATE borrow_infor SET payment = payment + ? WHERE book_id = ? AND borrow_time = ? LIMIT 1";
@@ -159,21 +157,39 @@ public class BorrowInforImpl implements BorrowInfor {
 
 	public double getMoney(String book_id){
 		double payment = 0.0;
+		ResultSet st = null;
 		try{
 			conn = DBUtils.getConnection();
 			String sql = "SELECT payment FROM borrow_infor WHERE book_id = ? AND return_flag = 0";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,book_id);
-			rs = pstmt.executeQuery();
-			if (rs.next()){
-				payment = rs.getDouble(1);
+			st = pstmt.executeQuery();
+			if (st.next()){
+				payment = st.getDouble(1);
 			}
 		}catch (Exception e){
 
 		}finally {
-			DBUtils.closeAll(rs,stmt,pstmt,conn);
+			DBUtils.closeAll(st,stmt,pstmt,conn);
 		}
 		return payment;
+	}
+	
+	public void addIncome(double payment) {
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			conn = DBUtils.getConnection();
+			String sql = "INSERT INTO income VALUES(?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sdf.format(now));
+			pstmt.setDouble(2,payment);
+			pstmt.execute();
+		}catch(Exception e) {
+			
+		}finally {
+			DBUtils.closeAll(rs, stmt, pstmt, conn);
+		}
 	}
 
 }

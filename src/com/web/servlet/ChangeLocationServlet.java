@@ -32,12 +32,13 @@ public class ChangeLocationServlet extends HttpServlet {
         book.setLocation(location);
 
         BookService bs = new BookServiceImpl();
+        String message = null;
         if(bs.changeLocation(book)) {
-            response.getWriter().write("Change Successfully! Jumping after 5 seconds!");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/change.jsp");
+            message = "Change Successfully!";
         } else {
-            response.getWriter().write("Change Failed! Jumping after 5 seconds!");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/changeLocation.jsp");
+            message = "Change Failed!";
         }
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("changeLocation.jsp").forward(request, response);
     }
 }

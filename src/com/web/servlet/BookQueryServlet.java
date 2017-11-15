@@ -43,8 +43,10 @@ public class BookQueryServlet extends HttpServlet {
             request.setAttribute("bookList", bookList);
             request.getRequestDispatcher("/bookQuery.jsp").forward(request, response);
         }else {
-            response.getWriter().write("Did not successfully match any record ! 5 seconds to jump to the search page");
-            response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/query.html");
+        	String message = null;
+        	message = "Did not successfully match any record ! ";
+			request.setAttribute("message", message);
+	        request.getRequestDispatcher("/query.jsp").forward(request, response);
         }
     }
 }

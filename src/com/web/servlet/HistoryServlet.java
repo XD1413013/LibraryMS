@@ -39,8 +39,10 @@ public class HistoryServlet extends HttpServlet {
             request.getRequestDispatcher("/borrowHistory.jsp").forward(request, response);
         }
         else{
-            response.getWriter().write("You didn't have borrow history ! 5 seconds to jump to the search page");
-            response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/search.jsp");
+        	String message = null;
+        	message = "You didn't have borrow history ! ";
+			request.setAttribute("message", message);
+	        request.getRequestDispatcher("/search.jsp").forward(request, response);
         }
     }
 

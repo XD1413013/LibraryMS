@@ -34,6 +34,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
+<script type="text/javascript">
+		window.onload=function() { 
+			if(document.readyState=="complete"){
+		  		document.del.book_id.focus(); 
+			}
+		}
+</script>
+<style type="text/css">
+        #top{
+            width: 200px;
+            float: right;
+            margin-top: -70px;
+        }
+
+        #top a {
+            color: #2e6da4;
+            font-size:18px;
+        }
+
+        #top a:hover {
+            color: #909;
+        }
+
+</style>
+    <script>
+        var message = '<%=(String)request.getAttribute("message")%>';
+        if (message !== 'null'){
+            alert(message);
+        }
+    </script>
     <!---->
 
 </head>
@@ -48,7 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="logo">
                 <a href="index.html"><img src="images/title.png"
-                                          alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+                                          alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
             </div>
         </div>
     </div>
@@ -61,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <%
             } else {
             %>
-            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index2.jsp" title="<%=user_name%>" onclick="show()">Back to HomePage</a>
+            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index2.jsp">Back</a>
             <%
                 }
             %>
@@ -72,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <%
                 if (user_name != null) {
             %>
-            <form action="DeleteServlet" method="post">
+            <form action="DeleteServlet" method="post" name="del">
                 <br>
                 <input type="text" value="" placeholder="Scan the Book_id" name="book_id"><br>
                 <input type="submit" value="Change">

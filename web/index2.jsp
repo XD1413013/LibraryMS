@@ -27,19 +27,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 		});
 	</script>
+<script>
+    var remindi ='<%=request.getParameter("return")%>';
+    if (remindi == 'yes'){
+        alert("Return successfully! ");
+    }
+    if(remindi == 'no'){
+    	alert("Return failed!");
+    }
+</script>
 <!---->
 <style type="text/css">
-#top a {
-	color: white;
-	font-size:15px;
-	text-decoration: none;
-}
+        #top{
+            width: 280px;
+            float: right;
+            margin-top: -70px;
+        }
 
-#top a:hover {
-	color: blue;
-}
+        #top a {
+            color: #2e6da4;
+            font-size:18px;
+        }
+
+        #top a:hover {
+            color: #909;
+        }
 
 </style>
+    <script>
+        var message = '<%=(String)request.getAttribute("message")%>';
+        if (message !== 'null'){
+            alert(message);
+        }
+    </script>
 </head>	
 <!--banner-->
 <body>
@@ -52,12 +72,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="container">
 			 <div class="logo">
 				<a href="index.html"><img src="images/title.png"
-				alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+				alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
 			 </div>
 		 </div>
 	 </div>
 	 <div class="top-menu">
-		<div id="top" style="float:right;margin-right: 20px">
+		<div id="top" >
 				<%
 					if (librarian_id == null) {
 				%>

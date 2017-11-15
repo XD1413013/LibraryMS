@@ -8,7 +8,7 @@
 <meta name="keywords"
 	content="PhotoBook Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<title>Insert title here</title>
+<title>Search</title>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,6 +38,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var remindi ='<%=request.getParameter("remind")%>';
     if (remindi == 'yes'){
         alert("You have overdue books, please return the book in time!");
+    }
+</script>
+<script>
+    var remindi ='<%=request.getParameter("list")%>';
+    if (remindi == 'no'){
+        alert("Did not successfully match any record !");
     }
 </script>
 </head>
@@ -70,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="banner-top">
 				<div class="jumbotron">
-					<h1>XD Library Management System</h1>
+					<h1>XD Babel</h1>
 					<p>Happy reading online</p>
 					<div class="banner-btn">
 						<form action="searchServlet" method="post">

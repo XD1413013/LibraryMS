@@ -32,14 +32,16 @@ public class libPersonalModifyServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("telephone");
 		PersonalInforService personalInforService = new PersonalInforImpl();
+		String message = null;
 		if(pwd!=null && c_pwd!=null && pwd.equals(c_pwd)) {
 			if(!personalInforService.Modify(librarian_id, pwd, 0, 0)) {
 				request.getRequestDispatcher("/lib_ModifyPwd.jsp?remind4=no").forward(request, response);
 			}else {
 				request.getSession().setAttribute("pwd",null);
 				request.getSession().setAttribute("c_pwd",null);
-				response.getWriter().write("   successfully ! 5 seconds to jump");
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/login.jsp");
+				message="successfully ! ";
+				request.setAttribute("message", message);
+		        request.getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 		}else if(pwd!=null && c_pwd!=null &&!pwd.equals(c_pwd)) {
 			request.getRequestDispatcher("/lib_ModifyPwd.jsp?remind4=no").forward(request, response);
@@ -50,8 +52,9 @@ public class libPersonalModifyServlet extends HttpServlet {
 				request.getRequestDispatcher("/lib_Modifyemail.jsp?remind5=no").forward(request, response);
 			}else {
 				request.getSession().setAttribute("email",null);
-				response.getWriter().write("   successfully ! 5 seconds to jump ");
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/index2.jsp");
+				message="successfully ! ";
+				request.setAttribute("message", message);
+		        request.getRequestDispatcher("/index2.jsp").forward(request, response);
 			}
 		}
 		
@@ -60,8 +63,9 @@ public class libPersonalModifyServlet extends HttpServlet {
 				request.getRequestDispatcher("/lib_Modifyphone.jsp?remind6=no").forward(request, response);
 			}else {
 				request.getSession().setAttribute("phone",null);
-				response.getWriter().write("   successfully ! 5 seconds to jump");
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/index2.jsp");
+				message="successfully ! ";
+				request.setAttribute("message", message);
+		        request.getRequestDispatcher("/index2.jsp").forward(request, response);
 			}
 		}
 	}

@@ -58,13 +58,19 @@
         return check(form);
     }
 </script>
+    <script>
+        var message = '<%=(String)request.getAttribute("message")%>';
+        if (message !== 'null'){
+            alert(message);
+        }
+    </script>
 </head>
 <body>
 	<%
 	request.getSession().invalidate();
 	%>
 	<h1>
-		<font color="black">Library Management System</font>
+		<font color="black">XD Babel</font>
 	</h1>
 	<div id="page">
 		<div id="top">
@@ -82,7 +88,7 @@
 	<div class="index-main">
 		<div class="index-main-body">
 			<div class="index-header">
-				<h2 class="subtitle">XD Library Management System</h2>
+				<h2 class="subtitle"></h2>
 			</div>
 
 			<div class="desk-front sign-flow clearfix sign-flow-simple">

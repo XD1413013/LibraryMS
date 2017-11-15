@@ -38,8 +38,7 @@ public class PersonalModifyServlet extends HttpServlet {
 			}else {
 				request.getSession().setAttribute("pwd",null);
 				request.getSession().setAttribute("c_pwd",null);
-				response.getWriter().write("   successfully ! 5 seconds to jump to the login page");
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/login.jsp");
+				request.getRequestDispatcher("/reader_operation.jsp?remind=yes").forward(request, response);
 			}
 		}else if(pwd!=null && c_pwd!=null && !pwd.equals(c_pwd)) {
 			request.getRequestDispatcher("/ModifyPwd.jsp?remind=no").forward(request, response);
@@ -50,8 +49,7 @@ public class PersonalModifyServlet extends HttpServlet {
 				request.getRequestDispatcher("/Modifyemail.jsp?remind=no").forward(request, response);
 			}else {
 				request.getSession().setAttribute("email",null);
-				response.getWriter().write("   successfully ! 5 seconds to jump to the search page");
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/search.jsp");
+				request.getRequestDispatcher("/reader_operation.jsp?remind=yes").forward(request, response);
 			}
 		}
 		
@@ -60,8 +58,7 @@ public class PersonalModifyServlet extends HttpServlet {
 				request.getRequestDispatcher("/Modifyphone.jsp?remind=no").forward(request, response);
 			}else {
 				request.getSession().setAttribute("phone",null);
-				response.getWriter().write("   successfully ! 5 seconds to jump to the search page");
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/search.jsp");
+				request.getRequestDispatcher("/reader_operation.jsp?remind=yes").forward(request, response);
 			}
 		}
 	}

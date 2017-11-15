@@ -32,29 +32,27 @@ public class AddBookServlet extends HttpServlet {
 		String location = request.getParameter("location");
         String isbn = request.getParameter("isbn");
         String id = new Date().getTime()%(24 * 60 * 60 * 1000) + "";
-        Book book = null;
 
         GetBookInfoService getBookInfoService = new GetBookInfoServiceImpl();
 		BookService bookServiceImpl = new BookServiceImpl();
 
-		book = getBookInfoService.getBookFromDouBan(isbn);
+		Book book = getBookInfoService.getBookFromDouBan(isbn);
+		String message = null;
 
 		if (book == null) {
-            response.getWriter().write("No Such Book! Jumping after 5 seconds");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/addBook.jsp");
+            message = "No Such Book!";
         } else {
             book.setLocation(location);
             book.setBook_id(id);
 
             if (bookServiceImpl.addBook(book)) {
-                request.setAttribute("state", 1);
-                response.getWriter().write("Added successfully! Jumping after 5 seconds");
-                response.setHeader("refresh", "5;url=" + request.getContextPath() + "/add.jsp");
+                message = "Added successfully! Id is: " + id;
             } else {
-                response.getWriter().write("Add failed! Jumping after 5 seconds");
-                response.setHeader("refresh", "5;url=" + request.getContextPath() + "/addBook.jsp");
+                message = "Add failed!";
             }
         }
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("addBook.jsp").forward(request, response);
 	}
 
 	/**

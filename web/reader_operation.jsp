@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Change Book</title>
+    <title>Reader Operation</title>
     <link href="css3/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <link href="css3/style.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="css3/chocolat.css" type="text/css" media="screen"/>
@@ -34,6 +34,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
+ <script>
+    var remindi ='<%=request.getParameter("re")%>';
+    if (remindi == 'no'){
+        alert("You have not reserved books!!!");
+    }
+</script>
     <!---->
  <script>
     var remindi ='<%=request.getParameter("result")%>';
@@ -42,6 +48,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
     if (remindi == 'yes'){
         alert("Cancel Successfully !!!");
+    }
+    var remindi1 ='<%=request.getParameter("reserve")%>';
+    if (remindi1 == 'no'){
+        alert("There have no enough book");
+    }
+    if (remindi1 == 'yes'){
+        alert("Reserve successfully!");
+    }
+    if (remindi1 == 'no2'){
+        alert("Reserve failed!");
+    }  if (remindi1 == 'no3'){
+        alert("More than number limition!");
+    }
+    var remindi2 ='<%=request.getParameter("personal")%>';
+    if (remindi2 == 'no'){
+        alert("There have no records!");
+    }
+    var remindi3 ='<%=request.getParameter("remind")%>';
+    if (remindi3 == 'yes'){
+        alert("Modify Successfully!");
     }
 </script>
 </head>
@@ -56,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="logo">
                 <a href="index.html"><img src="images/title.png"
-                                          alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+                                          alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
             </div>
         </div>
     </div>

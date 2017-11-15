@@ -34,12 +34,11 @@ public class ReaderQueryServlet extends HttpServlet {
         UserInformationDao ui = new UserInformationDaoImpl();
         Reader reader = ui.searchReader(reader_id);
 
-        if (reader != null) {
+        if (reader!=null && reader.getReader_id()!=null) {
             request.setAttribute("reader", reader);
             request.getRequestDispatcher("/readerQuery.jsp").forward(request, response);
         }else {
-            response.getWriter().write("Did not successfully match any record! 5 seconds to jump to the search page");
-            response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/query.jsp");
+            request.getRequestDispatcher("/query.jsp?query=no").forward(request, response);
         }
     }
 }

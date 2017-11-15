@@ -31,8 +31,7 @@ public class PersonalServlet extends HttpServlet {
 
 		String id = (String) request.getSession().getAttribute("reader_id");
 		if (id == null) {
-			response.getWriter().write("Please Sign in first! 5 seconds to jump to the search page");
-			response.setHeader("refresh", "5;url=" + request.getContextPath() + "/login.jsp");
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			PersonalInforService personalInforService = new PersonalInforImpl();
 			Reader reader = personalInforService.PersonalInfor(id);
@@ -40,8 +39,7 @@ public class PersonalServlet extends HttpServlet {
 				request.getSession().setAttribute("reader", reader);
 				request.getRequestDispatcher("/PersonalInfor.jsp").forward(request, response);
 			}else {
-				response.getWriter().write("Query error! 5 seconds to jump to the search page");
-				response.setHeader("refresh", "5;url=" + request.getContextPath() + "/reader_opertion.jsp");
+				  request.getRequestDispatcher("/reader_opration.jsp?personal=no").forward(request, response);
 			}
 		}
 	}

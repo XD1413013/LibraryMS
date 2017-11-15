@@ -32,6 +32,7 @@ public class libSearchServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		// 获取表单数据
 		String input = "";
+		String message = null;
 		try {
 			input = request.getParameter("bookInfo");
 		} catch (Exception e) {
@@ -51,12 +52,15 @@ public class libSearchServlet extends HttpServlet {
 			request.setAttribute("bookList", bl);
 			request.getRequestDispatcher("/liblist.jsp").forward(request, response);
 		}else {
-			response.getWriter().write("Did not successfully match any record ! 5 seconds to jump to the search page");
+			message="Did not successfully match any record !";
+			request.setAttribute("message", message);
 			String librarian_id = (String) request.getSession().getAttribute("librarian_id");
 			if(librarian_id==null) {
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/login.jsp");
+				message="Please login first !";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/login.jsp").forward(request, response);
 			}else {
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/index2.jsp");
+				request.getRequestDispatcher("/index2.jsp").forward(request, response);
 			}
 		}
 	}

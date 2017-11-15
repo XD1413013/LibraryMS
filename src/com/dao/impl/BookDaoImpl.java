@@ -151,7 +151,7 @@ public class BookDaoImpl implements BookDao {
 						return "This book is already been reserved.";
 					}
 					else if(b_flag.equals("1")){
-						return "This book is already been borrow.";
+						return "This book is already been borrowed.";
 					}
 				}
 			}catch (Exception e){
@@ -190,7 +190,7 @@ public class BookDaoImpl implements BookDao {
 					pstmt.setString(1,isbn);
 					pstmt.setString(2,reader_id);
 					pstmt.execute();
-					return "Success.";
+					return "Success";
 				}
 				} catch (SQLException e) {
 

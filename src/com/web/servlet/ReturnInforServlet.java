@@ -49,12 +49,13 @@ public class ReturnInforServlet extends HttpServlet {
 			}
 			Date date = (bs.searchInfor(book_id));
 			if (date != null) {
-				long days = now.getTime() / (24 * 60 * 60 * 1000) - date.getTime() / (24 * 60 * 60 * 1000);
+				double day = now.getTime() / (24 * 60 * 60 * 1000) - date.getTime() / (24 * 60 * 60 * 1000);
 				double money = 0;
-				if (days > 30) {
-					money = days - 30;
+				if (day > 30 && (day-30-new BorrowInforImpl().getMoney(book_id))>0) {
+					money = day - 30;
 					money -= new BorrowInforImpl().getMoney(book_id);
-					request.setAttribute("days", days - 30);
+					int days = (int)money;
+					request.setAttribute("days", days);
 					request.getSession().setAttribute("money", money);
 					request.getSession().setAttribute("book_id", book_id);
 					request.getSession().setAttribute("borrow_time", sdf.format(date));
@@ -64,19 +65,17 @@ public class ReturnInforServlet extends HttpServlet {
 				else {
 					BookService bd = new BookServiceImpl();
 					if (bd.returnBook(book_id,now_,money)) {
-						response.getWriter().write("Return successfully! Jumping after 5 seconds!");
+						request.getRequestDispatcher("/return.jsp?return=yes").forward(request, response);
 					}
 					else {
-						response.getWriter().write("Return failed!");
+						request.getRequestDispatcher("/return.jsp?return=no").forward(request, response);
 					}
 				}
 			} else {
-				response.getWriter().write("Return failed!");
+				request.getRequestDispatcher("/index2.jsp?return=no").forward(request, response);
 			}
-			response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
 		}else {
-			response.getWriter().write("Add failed! please log in first");
-			response.setHeader("refresh", "5;url=" + request.getContextPath() + "/login.jsp");
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 

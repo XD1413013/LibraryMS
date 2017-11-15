@@ -35,18 +35,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!---->
-    <style type="text/css">
+<style type="text/css">
+        #top{
+            width: 200px;
+            float: right;
+            margin-top: -70px;
+        }
+
         #top a {
-            color: white;
-            font-size:15px;
-            text-decoration: none;
+            color: #2e6da4;
+            font-size:18px;
         }
 
         #top a:hover {
-            color: blue;
+            color: #909;
         }
 
-    </style>
+</style>
 </head>
 <!--banner-->
 <body>
@@ -59,7 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="logo">
                 <a href="index.html"><img src="images/title.png"
-                                          alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+                                          alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
             </div>
         </div>
     </div>
@@ -72,13 +77,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <%
             } else {
             %>
-            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="income.jsp" title="<%=user_name%>" onclick="show()">Back to Income</a>
+            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;<a href="income.jsp">Back</a>
             <%
                 }
             %>
         </div>
         <div class="container" style="margin-top: 150px;">
-            <label for="show_income" style="font-size: larger; color: #5cb85c">Total Income: </label>&nbsp;&nbsp;&nbsp;&nbsp;<b id="show_income" style="font-size: larger; color: #5cb85c"><%=request.getAttribute("income")%></b>
+            <label for="show_income" style="font-size: larger; color: #5cb85c">Total Income: ￥</label>&nbsp;<b id="show_income" style="font-size: larger; color: #5cb85c"><%=request.getAttribute("income")%></b>
         </div>
         <!-- script-for-menu -->
         <script>

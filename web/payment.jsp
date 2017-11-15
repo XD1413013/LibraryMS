@@ -27,6 +27,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 		});
 	</script>
+<style type="text/css">
+        #top{
+            width: 160px;
+            float: right;
+            margin-top: -50px;
+        }
+
+        #top a {
+            color: #2e6da4;
+            font-size:18px;
+        }
+
+        #top a:hover {
+            color: #909;
+        }
+
+</style>
 <!---->
 
 </head>	
@@ -43,29 +60,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="container">
 			 <div class="logo">
 				<a href="index.html"><img src="images/title.png"
-				alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+				alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
 			 </div>
 		 </div>
 	 </div>
+	       <div id="top" style="float:right;margin-right: 20px">
+            <%
+                if (user_name == null) {
+            %>
+            <a href="login.jsp" >Sign in</a>
+            <%
+            } else {
+            %>
+            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index2.jsp">Back</a>
+            <%
+                }
+            %>
+        </div>
 	 <div class="banner-form" style="margin-top: 50px">
 		 <div class="container">
-					<%
-						if (user_name != null) {
-					%>
-					 <form action="PaymentServlet" method="post">
-			 			<br>
-			 			<a>Failed! You have expired <%=days%> days! Please pay first!</a><br>
-						<input type="text" value="" placeholder=<%="$"+money%> name="payment"><br>
-						<input type="submit" value="Send">
-						</form>
-					<%
-						} else {
-					%>
-						<a href="login.jsp">Please Login !</a>
-					<%
-						}
-					%>
-		 </div>
+                <%
+                    if (user_name != null) {
+                %>
+                 <form action="PaymentServlet" method="post">
+                    <br>
+                    <a style="color: #eeff16; font-size: xx-large">Failed! Please pay <%="￥" + money%> fine first!</a><br>
+                    <input type="hidden" value="<%=money%>" name="payment">
+                     <br>
+                     <br>
+                    <img src="images/pay.jpg" alt="aliPay image" width="300px" height="300px">
+                     <br>
+                     <br>
+                     <br>
+                    <input type="submit" value="Success Pay">
+                 </form>
+                <%
+                    } else {
+                %>
+                    <a href="login.jsp">Please Login !</a>
+                <%
+                    }
+                %>
+		 </div>s
 	 </div> 
 </div>
 <!---->

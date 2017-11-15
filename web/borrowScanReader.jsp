@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>Borrow</title>
     <link href="css3/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <link href="css3/style.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="css3/chocolat.css" type="text/css" media="screen"/>
@@ -34,6 +34,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
+<script type="text/javascript">
+		window.onload=function() { 
+			if(document.readyState=="complete"){
+		  		document.borrow.reader_id.focus(); 
+			}
+		}
+</script>
+<style type="text/css">
+        #top{
+            width: 200px;
+            float: right;
+            margin-top: -70px;
+        }
+
+        #top a {
+            color: #2e6da4;
+            font-size:18px;
+        }
+
+        #top a:hover {
+            color: #909;
+        }
+
+</style>
     <!---->
 
 </head>
@@ -48,16 +72,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="logo">
                 <a href="index.html"><img src="images/title.png"
-                                          alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+                                          alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
             </div>
         </div>
     </div>
+           <div class="top-menu">
+            <div id="top">
+             <%
+                if (user_name == null) {
+            %>
+            <a href="login.jsp" >Sign in</a>
+            <%
+            } else {
+            %>
+            <a href="login.jsp">Sign out</a>&nbsp;&nbsp;&nbsp;&nbsp;    <a href="borrow.jsp">Back</a>
+            <%
+                }
+            %>
+            </div>
+            <!-- script-for-menu -->
+            <script>
+                $("span.menu").click(function(){
+                    $(".top-menu ul").slideToggle("slow" , function(){
+                    });
+                });
+            </script>
+            <!-- script-for-menu -->
+        </div>
     <div class="banner-form" style="margin-top: 50px">
         <div class="container">
             <%
                 if (user_name != null) {
             %>
-            <form action="BorrowInforServlet" method="post">
+            <form action="BorrowInforServlet" method="post" name="borrow">
                 <br>
                 <input type="hidden" value="<%=request.getParameter("book_id")%>"  name="book_id"><br>
                 <input type="text" value="" placeholder="reader_id" name="reader_id"><br>

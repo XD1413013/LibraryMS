@@ -32,12 +32,13 @@ public class ChangeCanborrowServlet extends HttpServlet {
         book.setCan_borrow(can_borrow);
 
         BookService bs = new BookServiceImpl();
+        String message = null;
         if(bs.changeCanBorrow(book)) {
-            response.getWriter().write("Change Successfully! Jumping after 5 seconds!");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/change.jsp");
+            message = "Change Successfully!";
         } else {
-            response.getWriter().write("Change Failed! Jumping after 5 seconds!");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/changeCanBorrow.jsp");
+            message = "Change Failed!";
         }
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("changeCanBorrow.jsp").forward(request, response);
     }
 }

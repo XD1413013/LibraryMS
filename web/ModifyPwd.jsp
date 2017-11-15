@@ -28,34 +28,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	
+<script type="text/javascript">
+	function check(form) {
+		if (document.forms.loginForm.pwd.value=="") {
+			alert("Please enter the password!");
+			document.forms.loginForm.password.focus();
+			return false;
+		}
+		
+	}
+</script>
 <script>
-    var remindi ='<%=request.getParameter("remind1")%>';
+    var remindi ='<%=request.getParameter("remind4")%>';
     if (remindi == 'no'){
         alert("Please try again");
     }
 </script>
+
 <script type="text/javascript">
-	function check() {
+	function check(form) {
 		var psw = document.getElementById("psw");
 		var c_psw = document.getElementById("c_psw");
 		if (psw.value=="") {
 			alert("Please enter the password");
 			return false;
 		}
-		else if(c_psw.value==""){
+		if(c_psw.value==""){
 			alert("Please enter the confirm");
 			return false;
 		}
-		else if(psw.value!=c_psw.value){
+		if(psw.value!=c_psw.value){
 			alert("Two input password does not match!");
 			return false;
 		}
-		else if(psw.value.length<6){
+		if(psw.value.length<6){
 			alert("Password's length must be more than 5");
 			return false;
 		}
 	}
 </script>
+
 <style type="text/css">
 
         #top{
@@ -86,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="container">
 			 <div class="logo">
 				<a href="index.html"><img src="images/title.png"
-				alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+				alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
 			 </div>
 		 </div>
 	 </div>
@@ -101,8 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						} else {
 					%>
 					<a href="login.jsp">Sign out</a>
-					<a href="reader_operation.jsp">&nbsp;Operation</a>
-					<a href="PersonalInfor.jsp">&nbsp;Back</a>
+					<a href="PersonalInfor.jsp">&nbsp;&nbsp;Back</a>
 					<%
 						}
 					%>
@@ -123,9 +134,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			%>
 				 <form action="PersonalModifyServlet" method="post">
 					<br>
-					<input required type="text" value="" placeholder="New Password" id="pwd" name="pwd"><br>
-					<input required type="text" value="" placeholder="Confirm" id="c_pwd" name="c_pwd"><br>
-					<input type="submit" onclick="return check()" value="Send">
+					<input required type="text" value="" placeholder="New Password" name="pwd" id="psw"><br>
+					<input required type="text" value="" placeholder="Confirm" name="c_pwd" id="c_psw"><br>
+					<input type="submit" onclick="return check(this)" value="Send">
 				</form>
 			<%
 				} else {

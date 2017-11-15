@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="container">
 			 <div class="logo">
 				<a href="index.html"><img src="images/title.png"
-				alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+				alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
 			 </div>
 		 </div>
 	 </div>

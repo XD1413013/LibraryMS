@@ -26,14 +26,14 @@ public class ActivateReaderServlet extends HttpServlet {
 
         String id = request.getParameter("id");
         ReaderService readerService = new ReaderServiceImpl();
+        String message = null;
 
         if (readerService.activateReader(id)) {
-            request.setAttribute("state", 1);
-            response.getWriter().write("Added successfully! Jumping after 5 seconds");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/add.jsp");
+            message = "Activate successfully!";
         } else {
-            response.getWriter().write("No Such User! Jumping after 5 seconds");
-            response.setHeader("refresh", "5;url=" + request.getContextPath() + "/activateReader.jsp");
+            message = "No Such User!";
         }
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("activateReader.jsp").forward(request, response);
     }
 }

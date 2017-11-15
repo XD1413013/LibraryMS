@@ -40,15 +40,22 @@ public class BorrowInforServlet extends HttpServlet {
 
 		BookService bd = new BookServiceImpl();
 		BookDao bb = new BookDaoImpl();
-
-		boolean flag = bb.isReader(reader_id);
-		if (!flag){
-			request.setAttribute("state", 0);
-			response.getWriter().write("Please actvite to be a reader first! Jumping after 5 seconds");
-			response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+		String message = null;
+		if(reader_id.equals("") || book_id.equals("")) {
+			message = "Please enter correct information!";
+			request.setAttribute("message", message);
+	        request.getRequestDispatcher("/borrow.jsp").forward(request, response);
 			return;
+		}else {
+			boolean flag = bb.isReader(reader_id);
+			if (!flag){
+				request.setAttribute("state", 0);
+				message = "Please actvite to be a reader first!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("/index2.jsp").forward(request, response);
+				return;
+			}
 		}
-
 
 
 		String name = (String) request.getSession().getAttribute("librarian_id");
@@ -56,11 +63,13 @@ public class BorrowInforServlet extends HttpServlet {
 		if (name != null) {
 
 			boolean remind = new BorrowHistoryDaoImpl().whetherRemind(reader_id);
+			
 
 			if (remind){
 				double payment = new BorrowInforImpl().prePay(reader_id);
 				try {
 				int days = (int)payment;
+
 				if (payment != 0 ){
 					request.getSession().setAttribute("money", payment);
 					request.setAttribute("days",days);
@@ -73,14 +82,16 @@ public class BorrowInforServlet extends HttpServlet {
 						String state = bd.borrow(book_id, reader_id);
 						if (state.equals("Success")) {
 							request.setAttribute("state", 1);
-							response.getWriter().write("Borrow successfully! Jumping after 5 seconds");
-							response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+							message = "Borrow successfully! ";
+							request.setAttribute("message", message);
+					        request.getRequestDispatcher("/index2.jsp").forward(request, response);
 							return;
 						}
 						else {
 							request.setAttribute("state", 0);
-							response.getWriter().write( state + "Jumping after 5 seconds");
-							response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+							message = state;
+							request.setAttribute("message", message);
+					        request.getRequestDispatcher("/index2.jsp").forward(request, response);
 							return;
 						}
 					} catch (Exception e) {
@@ -95,14 +106,16 @@ public class BorrowInforServlet extends HttpServlet {
 					String state = bd.borrow(book_id, reader_id);
 					if (state.equals("Success")) {
 						request.setAttribute("state", 1);
-						response.getWriter().write("Borrow successfully! Jumping after 5 seconds");
-						response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+						message = "Borrow successfully! ";
+						request.setAttribute("message", message);
+				        request.getRequestDispatcher("/index2.jsp").forward(request, response);
 						return;
 					}
 					else {
 						request.setAttribute("state", 0);
-						response.getWriter().write( state + "Jumping after 5 seconds");
-						response.setHeader("refresh", "5;url=" + request.getContextPath() + "/index2.jsp");
+						message = state;
+						request.setAttribute("message", message);
+				        request.getRequestDispatcher("/index2.jsp").forward(request, response);
 						return;
 					}
 				} catch (Exception e) {
@@ -110,8 +123,9 @@ public class BorrowInforServlet extends HttpServlet {
 				}
 			}
 		}else {
-			response.getWriter().write("Borrow failed! please log in first");
-			response.setHeader("refresh", "5;url=" + request.getContextPath() + "/login.jsp");
+			message = "Borrow failed! please log in first!";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 

@@ -32,12 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<script>
-    var remindi ='<%=request.getParameter("re")%>';
-    if (remindi == 'no'){
-        alert("You have not reserved books!!!");
-    }
-</script>
+
     <title>Reserve List</title>
     <style type="text/css">
         #list {
@@ -87,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<a href="index.html"><img src="images/title.png"
 						alt="xidian-logo" /></a>
 					<h1>
-						<a href="#">XD Library Management System</a>
+						<a href="#">XD Babel</a>
 					</h1>
 				</div>
 			</div>

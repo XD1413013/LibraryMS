@@ -45,13 +45,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
 </script>
 <script type="text/javascript">
-	function check(form) {
+	function check() {
 		var phone = document.getElementById("phone");
 		if (phone.value=="") {
 			alert("Please enter the phone");
 			return false;
 		}
-		if(!(/^(141301)[1234]\d{4}$/.test(phone.value))){
+		else if(!(/^1[3578]\d{9}$/.test(phone.value))){
 			alert("format error!");
 			return false;
 		}
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="container">
 			 <div class="logo">
 				<a href="index.html"><img src="images/title.png"
-				alt="xidian-logo" /></a> <h1><a href="#">XD Library Management System</a></h1>
+				alt="xidian-logo" /></a> <h1><a href="#">XD Babel</a></h1>
 			 </div>
 		 </div>
 	 </div>
@@ -127,7 +127,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<br>
 					<input required type="text" id="phone" placeholder="New phone number" name="telephone"><span id="msg"></span>
 					<br>
-					<input type="submit"  onclick="return check(this)" value="Send" id="btn" />
+					<input type="submit"  onclick="return check()" value="Send" id="btn" />
 				</form>
 	<script type="text/javascript">
 	
@@ -139,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 		phone.onblur = function( e){
 			
-			if((/^(141301)[1234]\d{4}$/.test(phone.value))){
+			if((/^1[3578]\d{9}$/.test(phone.value))){
 				msg.style.color = "green";
 				this.style.borderColor = 'green';
 				

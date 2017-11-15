@@ -49,14 +49,14 @@ public class SearchServlet extends HttpServlet {
 		// 分发转向
 		if (bl != null) {
 			request.setAttribute("bookList", bl);
-			request.getRequestDispatcher("/list.jsp").forward(request, response);
+			request.getRequestDispatcher("/list.jsp?list=yes").forward(request, response);
 		}else {
-			response.getWriter().write("Did not successfully match any record ! 5 seconds to jump to the search page");
 			String reader_id = (String) request.getSession().getAttribute("reader_id");
 			if(reader_id==null) {
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/index.html");
+				request.getRequestDispatcher("/index.html").forward(request, response);
+				
 			}else {
-				response.setHeader("refresh", "5;url=" + request.getContextPath()+ "/search.jsp");
+				request.getRequestDispatcher("/search.jsp?list=no").forward(request, response);
 			}
 		}
 	}

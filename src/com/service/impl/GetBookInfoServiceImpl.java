@@ -8,7 +8,7 @@ public class GetBookInfoServiceImpl implements GetBookInfoService {
     @Override
     public Book getBookFromDouBan(String isbn) {
         String json = DouBan.getJson(isbn);
-        if ("".equals(json)) {
+        if ("null".equals(json)) {
             return null;
         }
         Book book = new Book();
