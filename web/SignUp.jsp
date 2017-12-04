@@ -45,19 +45,19 @@
 		var sex = document.getElementById("sex");
 		var pwd = document.getElementById("pwd");
 		var c_pwd = document.getElementById("c_pwd");
-		if (id.value=="") {
+		if (id.value==""||id.value.length>20) {
 			alert("Please enter the id");
 			return false;
-		}if(urn.value==""){
+		}if(urn.value==""||urn.value.length>20){
 			alert("Please enter the username");
 			return false;
-		}if(sex.value==""){
+		}if(sex.value==""||sex.value.length>20){
 			alert("Please enter the sex");
 			return false;
-		}if(pwd.value==""){
+		}if(pwd.value==""||pwd.value.length>20){
 			alert("Please enter the password");
 			return false;
-		}if(c_pwd.value==""){
+		}if(c_pwd.value==""||c_pwd.value.length>20){
 			alert("Please enter the confirm");
 			return false;
 		}if(pwd.value!=c_pwd.value){

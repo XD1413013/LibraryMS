@@ -49,11 +49,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function check(form) {
 		var psw = document.getElementById("psw");
 		var c_psw = document.getElementById("c_psw");
-		if (psw.value=="") {
+		if (psw.value==""||psw.value.length>20) {
 			alert("Please enter the password");
 			return false;
 		}
-		if(c_psw.value==""){
+		if(c_psw.value==""||c_psw.value.length>20){
 			alert("Please enter the confirm");
 			return false;
 		}

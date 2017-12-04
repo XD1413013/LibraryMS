@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 	function check(form) {
 		var account = document.getElementById("account");
-		if (account.value=="") {
+		if (account.value==""||account.value.length>30) {
 			alert("Please enter the email");
 			return false;
 		}

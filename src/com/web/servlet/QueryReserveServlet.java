@@ -37,7 +37,7 @@ public class QueryReserveServlet extends HttpServlet {
 		List<Book> books = reserve.view(id);
 		if(books.size()>0) {
 			request.getSession().setAttribute("books",books);
-			request.getRequestDispatcher("/reader_operation.jsp").forward(request, response);
+			request.getRequestDispatcher("/reserveList.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/reader_operation.jsp?re=no").forward(request, response);
 		}

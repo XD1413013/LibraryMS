@@ -40,23 +40,23 @@
 </style>
 
 <script type="text/javascript">
-	function check(form) {
-		if (document.forms.loginForm.urn.value=="") {
-			alert("Please enter the username!");
-			document.forms.loginForm.account.focus();
-			return false;
-		}
-		if (document.forms.loginForm.pwd.value=="") {
-			alert("Please enter the password!");
-			document.forms.loginForm.password.focus();
-			return false;
-		}
-		
-	}
-    function librarian(form) {
-        document.getElementById("isL").value = "true";
-        return check(form);
+	function check() {
+        var urn = document.getElementById("id");
+        var pwd = document.getElementById("pwd");
+        if (urn.value == "" || urn.value.length > 20) {
+            alert("Please enter the username");
+            return false;
+        }
+        if (pwd.value == "" || pwd.value.length > 20) {
+            alert("Please enter the password");
+            return false;
+        }
     }
+    function librarian() {
+        document.getElementById("isL").value = "true";
+        return check();
+    }
+
 </script>
     <script>
         var message = '<%=(String)request.getAttribute("message")%>';
@@ -99,11 +99,11 @@
 
 							<div class="account input-wrapper">
 
-								<input type="text" name="id" aria-label="User_id"
+								<input type="text" name="id" aria-label="User_id" id="id"
 									placeholder="User_id" required>
 							</div>
 							<div class="verification input-wrapper">
-								<input type="password" name="pwd" aria-label="Password"
+								<input type="password" name="pwd" aria-label="Password" id="pwd"
 									placeholder="Password" required />
 							</div>
 							<div>
@@ -113,11 +113,11 @@
 						</div>
 						<div class="button-wrapper command">
 							<button class="sign-button submit" type="submit"
-								onclick="return check(this)">Sign In</button>
+								onclick="return check()">Sign In</button>
 						</div>
 						<div class="button-wrapper command">
 							<button class="sign-button submit" type="submit"
-								onclick="return librarian(this);">Librarian Sign In</button>
+								onclick="return librarian();">Librarian Sign In</button>
 						</div>
 						<div class="signin-misc-wrapper clearfix">
 
